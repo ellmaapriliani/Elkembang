@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<title>EL KEMBANG — OWNER</title>
+<style>
+:root{--black:#090909;--panel:#151515;--panel2:#202020;--pink:#ff2d91;--pink2:#ff78b8;--pale:#ffd5e8;--muted:#b9aab2;--line:#393039;--white:#fff}
+*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+body{margin:0;background:radial-gradient(circle at 50% -10%,#42132d 0,#120b10 38%,#080808 78%);color:var(--white);padding:14px 12px calc(100px + env(safe-area-inset-bottom));min-height:100vh}
+header{text-align:center;padding:8px 0 16px}
+.logo{font-size:27px;font-weight:950;letter-spacing:1.5px;color:#fff;text-shadow:0 0 18px #ff2d9180}
+.logo span{color:var(--pink)}
+.sub{font-size:11px;color:var(--muted);letter-spacing:1.3px;margin-top:5px}
+.total{background:linear-gradient(120deg,#ff2d91,#a90055);border:1px solid #ff9ac9;border-radius:19px;padding:16px;text-align:center;box-shadow:0 9px 30px #ff2d9130;margin-bottom:14px}
+.total small{display:block;font-size:11px;letter-spacing:1px;opacity:.9}.total strong{display:block;font-size:27px;margin:5px 0}.total span{font-size:12px}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:14px}
+.tabs button{border:1px solid var(--line);border-radius:12px;background:#171317;color:#d7cbd1;padding:10px 2px;font-size:10px;font-weight:800}
+.tabs button.on{background:var(--pink);border-color:var(--pink);color:#fff;box-shadow:0 4px 15px #ff2d9140}
+.card{background:linear-gradient(145deg,#191619,#111);border:1px solid var(--line);border-radius:16px;padding:13px;margin-bottom:11px;box-shadow:0 5px 18px #0005}
+.card b,.section-title{color:#fff}.section-title{font-size:14px;font-weight:850;margin-bottom:10px}
+input,select,textarea{width:100%;padding:12px;margin:5px 0;background:#0d0b0d;border:1px solid #493341;border-radius:11px;color:#fff;font-size:14px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--pink);box-shadow:0 0 0 2px #ff2d9120}
+input::placeholder,textarea::placeholder{color:#887780}
+select option{background:#171117;color:#fff}
+.btn{width:100%;padding:12px;border:0;border-radius:12px;background:linear-gradient(100deg,#ff2d91,#d90068);color:#fff;font-weight:850;font-size:13px;margin-top:7px;cursor:pointer}
+.btn.secondary{background:#272027;border:1px solid #59404e;color:#ffd5e8}.btn.green{background:#168b55}.btn.danger{background:#6e1d36}.btn.gold{background:#b78316;color:#fff}
+.small{font-size:11px;color:var(--muted);line-height:1.6}.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.badge{background:#4a1832;color:#ffacd1;padding:5px 9px;border-radius:20px;font-size:10px;font-weight:800;white-space:nowrap}
+.item{background:#171317;border:1px solid #382b34;border-radius:13px;padding:12px;margin-bottom:8px}
+.del{color:#ff78a8;background:none;border:0;font-size:12px;font-weight:800;padding:8px 0}
+.member{background:linear-gradient(130deg,#a90055,#ff2d91 60%,#ff78b8);border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:0 8px 20px #ff2d9120}
+.stamps{text-align:center;font-size:20px;letter-spacing:2px;margin:10px 0}
+.progress{height:8px;background:#ffffff55;border-radius:20px;overflow:hidden}.progress div{height:100%;background:#fff}
+.gaji{background:linear-gradient(130deg,#3b172b,#191116);border:1px solid #9e3568;border-radius:16px;padding:14px;margin-bottom:10px}
+.empty{text-align:center;color:#8e7d86;padding:18px;font-size:12px}
+.hidden{display:none!important}
+.footer{text-align:center;color:#76666f;font-size:10px;padding:10px}
+hr{border:0;border-top:1px solid var(--line);margin:12px 0}
+@media(min-width:650px){body{max-width:760px;margin:auto;padding-top:25px}.tabs button{font-size:12px;padding:13px}}
+</style>
+
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EL KEMBANG">
+
+</head>
+<body>
+<header><div class="logo">EL <span>KEMBANG</span></div><div class="sub">NAIL ART • OWNER DASHBOARD</div></header>
+
+<div class="total"><small>💗 TOTAL SALON HARI INI</small><strong id="totalHari">Rp 0</strong><span id="jmlPel">0 pelanggan hari ini</span></div>
+
+<nav class="tabs">
+<button id="t1" class="on" onclick="showTab(1)">👩‍客户<br>CLIENT</button>
+<button id="t2" onclick="showTab(2)">📦<br>STOK</button>
+<button id="t3" onclick="showTab(3)">📅<br>BOOKING</button>
+<button id="t4" onclick="showTab(4)">⭐<br>MEMBER</button>
+<button id="t5" onclick="showTab(5)">💰<br>GAJI</button>
+</nav>
+
+<section id="tab1">
+<div class="card">
+<div class="section-title">＋ TAMBAH TRANSAKSI PELANGGAN</div>
+<input id="pNama" placeholder="Nama pelanggan">
+<input id="pHp" inputmode="tel" placeholder="Nomor WhatsApp">
+<select id="pTerapis"></select>
+<select id="pTreat" onchange="setHargaDefault()">
+<option value="Nail Art Biasa">Nail Art Biasa — Rp 80.000</option>
+<option value="Extension">Extension — Rp 150.000</option>
+<option value="Manicure">Manicure — Rp 50.000</option>
+<option value="Pedicure">Pedicure — Rp 60.000</option>
+<option value="Remove / Lepas">Remove / Lepas — Rp 30.000</option>
+<option value="Custom">Custom</option>
+</select>
+<input id="pHarga" type="number" min="0" placeholder="Harga (otomatis, bisa diubah)">
+<input id="pCat" placeholder="Catatan (opsional)">
+<button class="btn" onclick="tambahPelanggan()">💾 SIMPAN TRANSAKSI + STEMPEL</button>
+</div>
+<div id="listPel"></div>
+</section>
+
+<section id="tab2" class="hidden">
+<div class="card"><div class="section-title">＋ TAMBAH STOK BARANG</div>
+<input id="sNama" placeholder="Nama barang">
+<input id="sJml" type="number" min="0" placeholder="Jumlah stok">
+<input id="sHarga" type="number" min="0" placeholder="Harga / modal Rp">
+<button class="btn" onclick="tambahStok()">💾 SIMPAN STOK</button></div>
+<div id="listStok"></div>
+</section>
+
+<section id="tab3" class="hidden">
+<div class="card"><div class="section-title">👩 KELOLA TERAPIS</div><div id="listTerapis"></div>
+<input id="tBaru" placeholder="Nama terapis baru"><button class="btn" onclick="tambahTerapis()">＋ TAMBAH TERAPIS</button></div>
+<div class="card"><div class="section-title">📅 BUAT BOOKING</div>
+<input id="bNama" placeholder="Nama client"><input id="bHp" inputmode="tel" placeholder="Nomor WhatsApp client">
+<input id="bTgl" type="date"><input id="bJam" type="time">
+<select id="bTerapis"></select>
+<select id="bTreat"><option>Nail Art Biasa</option><option>Extension</option><option>Manicure</option><option>Pedicure</option></select>
+<button class="btn" onclick="simpanBooking()">💾 SIMPAN BOOKING</button>
+<button class="btn green" onclick="kirimWABooking()">📲 BUKA WHATSAPP BOOKING</button></div>
+<div id="listBooking"></div>
+</section>
+
+<section id="tab4" class="hidden">
+<div class="card"><div class="section-title">⭐ KARTU MEMBER EL KEMBANG</div><div class="small">Setiap 10 kali kunjungan mendapat 1 kali layanan gratis. Stempel otomatis bertambah saat transaksi disimpan.</div></div>
+<div id="listMember"></div>
+</section>
+
+<section id="tab5" class="hidden">
+<div class="card"><div class="section-title">💰 HITUNG GAJI TERAPIS</div><div class="small">Komisi dihitung 10% dari transaksi terapis pada bulan berjalan.</div></div>
+<div id="listGaji"></div>
+</section>
+
+<section class="card" style="margin-top:16px">
+<div class="section-title">🛡️ BACKUP & PEMULIHAN DATA</div>
+<div class="small">Data tersimpan otomatis di penyimpanan browser HP ini. Buat backup secara berkala agar data tetap aman jika browser terhapus, HP berganti, atau aplikasi di-reset.</div>
+<button class="btn" onclick="exportBackup()">⬇️ DOWNLOAD BACKUP DATA</button>
+<label class="btn secondary" style="display:block;text-align:center;cursor:pointer">⬆️ PULIHKAN DARI FILE BACKUP<input id="importFile" type="file" accept="application/json,.json" style="display:none" onchange="importBackup(event)"></label>
+<button class="btn danger" onclick="resetData()">🗑️ HAPUS SEMUA DATA</button>
+<div id="saveStatus" class="small" style="text-align:center;margin-top:8px">● Penyimpanan lokal aktif</div>
+</section>
+<div class="footer">EL KEMBANG OWNER APP • BLACKPINK EDITION</div>
+
+<script>
+const KEY='el_kembang_owner_blackpink_v1';
+const defaultData={pel:[],stok:[],book:[],member:{},terapis:['Owner','Dila','Putri','Novia']};
+let data=loadData();
+let {pel,stok,book,member,terapis}=data;
+function loadData(){
+ try{const raw=localStorage.getItem(KEY);if(raw){const d=JSON.parse(raw);return {...defaultData,...d,member:d.member||{},terapis:d.terapis||defaultData.terapis};}}
+ catch(e){alert('Data lokal tidak bisa dibaca. Jika punya file backup, pulihkan melalui menu Backup.');}
+ return JSON.parse(JSON.stringify(defaultData));
+}
+function save(){
+ const payload={pel,stok,book,member,terapis};
+ try{localStorage.setItem(KEY,JSON.stringify(payload));document.getElementById('saveStatus').textContent='● Tersimpan otomatis di HP ini';}
+ catch(e){document.getElementById('saveStatus').textContent='⚠ Penyimpanan penuh. Segera download backup.';alert('Penyimpanan browser penuh. Download backup dan kosongkan ruang penyimpanan.');}
+ render();
+}
+function rupiah(n){return 'Rp '+Number(n||0).toLocaleString('id-ID')}
+function today(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function dateID(iso){if(!iso)return '-';const p=iso.split('-');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:iso}
+function monthNow(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')}
+function showTab(n){for(let i=1;i<=5;i++){document.getElementById('tab'+i).classList.toggle('hidden',i!==n);document.getElementById('t'+i).classList.toggle('on',i===n)}}
+function hargaTreat(t){return ({'Nail Art Biasa':80000,'Extension':150000,'Manicure':50000,'Pedicure':60000,'Remove / Lepas':30000})[t]||0}
+function setHargaDefault(){const t=document.getElementById('pTreat').value;document.getElementById('pHarga').value=t==='Custom'?'':hargaTreat(t)}
+function waNumber(v){let hp=String(v||'').replace(/\D/g,'');if(hp.startsWith('0'))hp='62'+hp.slice(1);return hp}
+function tambahPelanggan(){
+ const n=pNama.value.trim();if(!n)return alert('Isi nama pelanggan terlebih dahulu.');
+ const h=Number(pHarga.value||hargaTreat(pTreat.value));if(!h||h<0)return alert('Masukkan harga transaksi yang benar.');
+ const rec={id:Date.now(),n,hp:pHp.value.trim(),ter:pTerapis.value,t:pTreat.value,harga:h,cat:pCat.value.trim(),tgl:today(),jam:new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})};
+ pel.unshift(rec);
+ if(!member[n])member[n]={hp:rec.hp,stempel:0,gratis:0};
+ member[n].hp=rec.hp||member[n].hp;member[n].stempel=(member[n].stempel||0)+1;
+ if(member[n].stempel>=10){member[n].stempel=0;member[n].gratis=(member[n].gratis||0)+1;alert('🎉 '+n+' mencapai 10 kunjungan dan mendapat 1 layanan gratis!');}
+ pNama.value=pHp.value=pCat.value=pHarga.value='';setHargaDefault();save();alert('Transaksi tersimpan dan stempel member bertambah ⭐');
+}
+function tambahStok(){const n=sNama.value.trim();if(!n)return alert('Isi nama barang.');stok.unshift({id:Date.now(),n,j:Number(sJml.value||0),h:Number(sHarga.value||0)});sNama.value=sJml.value=sHarga.value='';save()}
+function tambahTerapis(){const n=tBaru.value.trim();if(!n)return alert('Isi nama terapis.');if(terapis.some(x=>x.toLowerCase()===n.toLowerCase()))return alert('Nama terapis sudah ada.');terapis.push(n);tBaru.value='';save()}
+function hapusTerapis(i){if(confirm('Hapus terapis '+terapis[i]+'? Riwayat transaksi tetap tersimpan.')){terapis.splice(i,1);save()}}
+function simpanBooking(){const n=bNama.value.trim();if(!n)return alert('Isi nama client.');if(!bTgl.value||!bJam.value)return alert('Isi tanggal dan jam booking.');book.unshift({id:Date.now(),n,hp:bHp.value.trim(),tgl:bTgl.value,jam:bJam.value,ter:bTerapis.value,treat:bTreat.value});save();alert('Booking berhasil disimpan.')}
+function kirimWABooking(){const hp=waNumber(bHp.value);if(!hp)return alert('Isi nomor WhatsApp client.');const pesan=`Halo ${bNama.value||'Kak'} 💅%0ABooking EL KEMBANG:%0A📅 ${dateID(bTgl.value)} ⏰ ${bJam.value}%0A👩 Terapis: ${bTerapis.value}%0A💅 ${bTreat.value}%0A%0AMohon konfirmasi ya. Terima kasih 💗`;window.open('https://wa.me/'+hp+'?text='+pesan,'_blank')}
+function tambahStempel(n){if(!member[n])return;member[n].stempel++;if(member[n].stempel>=10){member[n].stempel=0;member[n].gratis=(member[n].gratis||0)+1;alert('🎉 '+n+' mendapat 1 layanan gratis!')}save()}
+function kirimKartu(n){const m=member[n],hp=waNumber(m.hp);if(!hp)return alert('Nomor WhatsApp member belum tersedia.');let s='';for(let i=0;i<10;i++)s+=i<m.stempel?'⭐':'☆';const pesan=`Halo ${n} 💅%0A⭐ KARTU MEMBER EL KEMBANG ⭐%0A${s}%0A%0AKunjungan: ${m.stempel}/10%0ASisa ${10-m.stempel} kunjungan untuk gratis 1x 🎁%0ATotal hadiah gratis: ${m.gratis||0}x`;window.open('https://wa.me/'+hp+'?text='+pesan,'_blank')}
+function hapus(arr,i){if(!confirm('Hapus data ini?'))return;if(arr==='pel')pel.splice(i,1);if(arr==='stok')stok.splice(i,1);if(arr==='book')book.splice(i,1);save()}
+function kirimSlipGaji(ter,total,jml,gaji){let hp=prompt('Masukkan nomor WhatsApp '+ter+' (contoh 08xxxxxxxxxx)');if(!hp)return;hp=waNumber(hp);if(!hp)return alert('Nomor tidak valid.');const pesan=`Halo ${ter} 💅%0A💰 SLIP GAJI EL KEMBANG%0A📅 Bulan: ${new Date().toLocaleDateString('id-ID',{month:'long',year:'numeric'})}%0A👥 Total Client: ${jml} orang%0A💰 Total Pemasukan: ${rupiah(total)}%0A📊 Komisi 10%: ${rupiah(gaji)}%0A%0A🎉 TOTAL GAJI: ${rupiah(gaji)}%0A- Owner EL KEMBANG`;window.open('https://wa.me/'+hp+'?text='+pesan,'_blank')}
+function exportBackup(){
+ const payload={app:'EL KEMBANG OWNER',version:1,exportedAt:new Date().toISOString(),pel,stok,book,member,terapis};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='EL-KEMBANG-BACKUP-'+today()+'.json';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);alert('Backup berhasil dibuat. Simpan file JSON ini di Files/iCloud/Google Drive agar aman.');
+}
+function importBackup(ev){
+ const file=ev.target.files[0];if(!file)return;const reader=new FileReader();
+ reader.onload=()=>{try{const d=JSON.parse(reader.result);if(!Array.isArray(d.pel)||!Array.isArray(d.stok)||!Array.isArray(d.book)||typeof d.member!=='object'||!Array.isArray(d.terapis))throw new Error('Format tidak cocok');if(!confirm('Pulihkan backup? Data saat ini akan diganti dengan isi backup.'))return;pel=d.pel;stok=d.stok;book=d.book;member=d.member;terapis=d.terapis;save();alert('Backup berhasil dipulihkan!');}catch(e){alert('File backup tidak valid atau rusak.');}finally{ev.target.value=''}};
+ reader.readAsText(file);
+}
+function resetData(){if(!confirm('Yakin ingin menghapus SEMUA data pelanggan, stok, booking, member, dan terapis? Download backup terlebih dahulu jika masih diperlukan.'))return;if(!confirm('Konfirmasi terakhir: semua data akan dihapus dari HP ini.'))return;pel=[];stok=[];book=[];member={};terapis=['Owner','Dila','Putri','Novia'];save();alert('Semua data lokal telah dihapus.')}
+function render(){
+ const t=today(),todays=pel.filter(p=>p.tgl===t),sum=todays.reduce((a,p)=>a+Number(p.harga||0),0);
+ totalHari.textContent=rupiah(sum);jmlPel.textContent=todays.length+' pelanggan hari ini';
+ pTerapis.innerHTML=terapis.map(x=>`<option>${escapeHTML(x)}</option>`).join('');bTerapis.innerHTML=pTerapis.innerHTML;
+ listTerapis.innerHTML=terapis.map((x,i)=>`<span class="badge" style="display:inline-flex;align-items:center;margin:3px">${escapeHTML(x)} <button onclick="hapusTerapis(${i})" style="border:0;background:none;color:#ffb4d3;margin-left:5px">×</button></span>`).join('');
+ listPel.innerHTML=pel.map((p,i)=>`<div class="item"><div class="row"><b>${escapeHTML(p.n)}</b><span class="badge">${rupiah(p.harga)}</span></div><div class="small">👩 ${escapeHTML(p.ter||'-')} • ${escapeHTML(p.t||'')}<br>📅 ${dateID(p.tgl)} ${escapeHTML(p.jam||'')} • ${escapeHTML(p.hp||'')}<br>${escapeHTML(p.cat||'')}</div><button class="del" onclick="hapus('pel',${i})">🗑 HAPUS TRANSAKSI</button></div>`).join('')||'<div class="empty">Belum ada transaksi pelanggan.</div>';
+ listStok.innerHTML=stok.map((s,i)=>`<div class="item"><div class="row"><b>${escapeHTML(s.n)}</b><span class="badge">Stok: ${s.j}</span></div><div class="small">Harga/modal: ${rupiah(s.h)}</div><button class="del" onclick="hapus('stok',${i})">🗑 HAPUS</button></div>`).join('')||'<div class="empty">Belum ada data stok.</div>';
+ listBooking.innerHTML=book.map((b,i)=>`<div class="item"><div class="row"><b>${escapeHTML(b.n)}</b><span class="badge">${dateID(b.tgl)}</span></div><div class="small">💅 ${escapeHTML(b.treat)} • ⏰ ${escapeHTML(b.jam)}<br>👩 ${escapeHTML(b.ter)} • 📱 ${escapeHTML(b.hp||'-')}</div><button class="del" onclick="hapus('book',${i})">🗑 HAPUS BOOKING</button></div>`).join('')||'<div class="empty">Belum ada booking.</div>';
+ listMember.innerHTML=Object.keys(member).map(n=>{const m=member[n];let stars='';for(let i=0;i<10;i++)stars+=i<m.stempel?'⭐':'☆';return `<div class="member"><div class="row"><b>💅 ${escapeHTML(n)}</b><b>${m.stempel}/10</b></div><div class="stamps">${stars}</div><div class="progress"><div style="width:${m.stempel*10}%"></div></div><p class="small" style="color:#fff;text-align:center">Gratis didapat: ${m.gratis||0}x</p><button class="btn secondary" onclick="tambahStempel('${jsString(n)}')">＋ TAMBAH STEMPEL MANUAL</button><button class="btn green" onclick="kirimKartu('${jsString(n)}')">📲 KIRIM KARTU KE WA</button></div>`}).join('')||'<div class="empty">Belum ada member. Member dibuat otomatis saat transaksi disimpan.</div>';
+ let out='',all=0;terapis.forEach(ter=>{const list=pel.filter(p=>p.ter===ter&&String(p.tgl||'').slice(0,7)===monthNow());const total=list.reduce((a,p)=>a+Number(p.harga||0),0),gaji=Math.round(total*.10);all+=gaji;out+=`<div class="gaji"><div class="row"><b>👩 ${escapeHTML(ter)}</b><span class="badge">${list.length} client bulan ini</span></div><p class="small">Total pemasukan: ${rupiah(total)}<br>Komisi 10%: ${rupiah(gaji)}</p><h3 style="margin:5px 0;color:#ff78b8">GAJI: ${rupiah(gaji)}</h3><button class="btn green" onclick="kirimSlipGaji('${jsString(ter)}',${total},${list.length},${gaji})">📲 KIRIM SLIP GAJI KE WA</button></div>`});
+ listGaji.innerHTML=out+`<div class="card" style="text-align:center"><b>Total gaji semua terapis bulan ini</b><h2 style="color:#ff78b8">${rupiah(all)}</h2><div class="small">Omset bulan ini: ${rupiah(pel.filter(p=>String(p.tgl||'').slice(0,7)===monthNow()).reduce((a,p)=>a+Number(p.harga||0),0))}</div></div>`;
+}
+function escapeHTML(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function jsString(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,' ')}
+setHargaDefault();render();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./service-worker.js').catch(function (err) {
+      console.warn('Service worker belum terpasang:', err);
+    });
+  });
+}
+</script>
+
+</body></html>
